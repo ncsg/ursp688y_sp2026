@@ -23,7 +23,7 @@ Students should submit all assignments as pull requests to this repository. All 
 |[Week 4: Feb 19](#february-19-week-4)|Modular Programming and Generalizability|[Zoom](https://umd.zoom.us/j/95813351606)|Exercise 1||
 |[Week 5: Feb 26](#february-26-week-5)|Accessing and Wrangling Data|[Zoom](https://umd.zoom.us/j/95813351606)|Exercise 1 Code Review||
 |[Week 6: Mar 5](#march-5-week-6)|Geospatial Data|[Zoom](https://umd.zoom.us/j/95813351606)|Exercise 2||
-|[Week 7: Mar 12](#march-12-week-7)|Data Visualization|***In-Person***|Exercise 2 Code Review|Chester|
+|[Week 7: Mar 12](#march-12-week-7)|Data Visualization|***In-Person***|Exercise 2 Code Review|Chester| Joseph Wong
 |[Spring Break](#march-19-spring-break)| 🏄 🌴 🏄 🌴 🏄 🌴 🏄 🌴 |***NO CLASS***||-|
 |[Week 8: Mar 26](#march-26-week-8)|Final Project Proposal Workshop|[Zoom](https://umd.zoom.us/j/95813351606)|Final Project Proposal|-|
 |[Week 9: Apr 2](#april-2-week-9)|Network Analysis|[Zoom](https://umd.zoom.us/j/95813351606)||| 
