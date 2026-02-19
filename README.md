@@ -368,7 +368,7 @@ This course is inspired by numerous other courses and colleagues, especially:
   - Spatial joins
 - Code Review Workshop
 - Reading seminar
-  - Peng, Q., Knaap, G., & Finio, N. (2023). Do Multifamily unit Rents Increase in Response to Light Rail in the Pre-service Period? _International Regional Science Review_, 01600176231162563. <https://doi.org/10.1177/01600176231162563>
+  - Peng, Q., Knaap, G., & Finio, N. (2023). Do Multifamily Unit Rents Increase in Response to Light Rail in the Pre-service Period? _International Regional Science Review_, 01600176231162563. <https://doi.org/10.1177/01600176231162563>
 
 ### March 12 (Week 7)
 
