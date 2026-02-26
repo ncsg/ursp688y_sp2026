@@ -204,9 +204,9 @@ Conversely, I understand there are different professional norms for coding, for 
 
 A paradox of generative AI is that it may be most valuable when used by someone who is already an expert. Senior coders can use AI to quickly assemble building blocks that might have otherwise been written by more junior colleagues. But who will replace the senior coders if we no longer need junior staff? Without as much compulsory training by doing, it is more important than ever to be diligent about your own professional development, challenging yourself to build the expertise you will need to use AI effectively rather than using it to avoid learning.
 
-3. ***How easily could I detect an error in an AI output and how easily could I fix it?***
+3. ***How easily could I detect an error in an AI output and how easily could I repair it?***
 
-I avoid using AI when it would be difficult for me to detect an error or difficult for me to fix it. Of course, the difficulty of detecting and fixing is associated with expertise, so I am less likely to use AI in situations where I am less of an expert. This framework of detectability and fixability for considering the appropriateness of AI applications was developed by Drs. Katie Shilton and Joel Chan of the [Values-Centered AI](https://vcai.umd.edu/) project in the UMD College of Information.
+I avoid using AI when it would be difficult for me to detect an error or difficult for me to repair it. Of course, the difficulty of detecting and repairing is associated with expertise, so I am less likely to use AI in situations where I am less of an expert. This framework of detectability/verifiability and repairability for considering the appropriateness of AI applications was developed by Drs. Katie Shilton and Joel Chan of the [Values-Centered AI](https://vcai.umd.edu/) project in the UMD College of Information.
 
 ## Grading
 
