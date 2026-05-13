@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ride On Reimagined Equity Analysis</title>
+  <style>
+    :root {
+      --ink: #18232d;
+      --muted: #5f6f7b;
+      --line: #d8e0e7;
+      --paper: #f5f7f8;
+      --panel: #ffffff;
+      --teal: #167c80;
+      --rust: #a34f2f;
+      --green: #28724f;
+      --red: #b9403a;
+      --gold: #b78a1f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.62;
+    }
+
+    .masthead {
+      background: #19313f;
+      color: #f8fbfd;
+      padding: 42px 24px 36px;
+      border-bottom: 6px solid var(--teal);
+    }
+
+    .masthead-inner,
+    .content {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #b9d4dd;
+      font: 700 0.82rem Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.05;
+      max-width: 920px;
+      margin: 0 0 18px;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      max-width: 900px;
+      color: #e1edf2;
+      font-size: 1.12rem;
+      margin: 0;
+    }
+
+    .content {
+      padding: 28px 24px 56px;
+      display: grid;
+      gap: 28px;
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 14px;
+      min-height: 120px;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-bottom: 8px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.45rem;
+      line-height: 1.1;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .metric p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    article {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 26px;
+    }
+
+    h2 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.35rem;
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      margin: 24px 0 8px;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .callout {
+      border-left: 5px solid var(--teal);
+      padding: 14px 16px;
+      background: #eef7f7;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      margin: 18px 0;
+    }
+
+    .figure {
+      margin: 24px 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #eef1f4;
+    }
+
+    .caption {
+      padding: 12px 14px;
+      border-top: 1px solid var(--line);
+      background: #fbfcfd;
+      color: #34434f;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .interpretation {
+      padding: 14px 16px;
+      background: #fcfbf8;
+      border-top: 1px solid var(--line);
+      color: #273640;
+    }
+
+    .interpretation strong {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f7f9fa;
+      color: #34424d;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .loss {
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .gain {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .source-note {
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.86rem;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 920px) {
+      .summary-strip,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .masthead {
+        padding: 30px 16px;
+      }
+
+      .content {
+        padding: 18px 14px 36px;
+      }
+
+      article {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <p class="eyebrow">Montgomery County DOT</p>
+      <h1>Did Ride On Reimagined Phase 1 close or reproduce a transit-service equity gap?</h1>
+      <p class="lede">This project responds to an imaginary request from the Montgomery County Department of Transportation to evaluate whether the Ride On Reimagined redesign distributed scheduled bus service gains toward Census tracts with higher estimated transit need.</p>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="summary-strip" aria-label="Key findings">
+      <div class="metric">
+        <span>Main Comparison</span>
+        <strong>Jan 2025 to Jun 2025</strong>
+        <p>Pre-redesign schedule compared with Phase 1 implementation.</p>
+      </div>
+      <div class="metric">
+        <span>High-Need Tracts</span>
+        <strong class="loss">-26.7 trips</strong>
+        <p>Mean weekday scheduled trip change within 0.25 miles.</p>
+      </div>
+      <div class="metric">
+        <span>Moderate-Low Tracts</span>
+        <strong class="gain">+66.0 trips</strong>
+        <p>Largest average weekday scheduled service gain.</p>
+      </div>
+      <div class="metric">
+        <span>Statistical Test</span>
+        <strong>p = 0.459</strong>
+        <p>No clear evidence that high-need tracts gained more service.</p>
+      </div>
+    </section>
+
+    <article>
+      <h2>Problem Statement And Central Question</h2>
+      <p>Bus network redesigns are often framed as technical improvements: routes are adjusted, frequencies are balanced, and schedules are redesigned to create a more efficient system. The equity question is whether those technical improvements also benefit people and neighborhoods that rely most on transit. In Montgomery County, Ride On Reimagined provides a useful case because Phase 1 created a concrete before-and-after schedule change that can be evaluated with public data.</p>
+      <p>The central question is: did Ride On Reimagined Phase 1 produce larger scheduled service gains in higher-transit-need Census tracts than in lower-transit-need tracts? The hypothesis tested here is empirical rather than normative: higher transit need is expected to be associated with larger scheduled service gains if the redesign prioritized equity in service distribution.</p>
+      <div class="callout">The analysis is an equity audit of scheduled service supply. It does not claim to measure whether riders experienced better trips, because rider experience depends on reliability, span of service, safety, crowding, fares, transfers, and destination access.</div>
+    </article>
+
+    <article>
+      <h2>Data And Methods</h2>
+      <p>The analysis uses American Community Survey tract data to estimate transit need and General Transit Feed Specification files to measure scheduled Ride On bus service. ACS variables are combined into a tract-level transit need index, with higher values indicating stronger indicators of transit dependence or transportation vulnerability. The GTFS analysis counts scheduled weekday trips and accessible stops within a 0.25-mile tract buffer, allowing the schedule data to be summarized at the same geography as the ACS indicators.</p>
+      <p>The primary comparison uses the January 2025 GTFS feed as the pre-redesign condition and the June 2025 GTFS feed as the Phase 1 implementation condition. A separate published 2026 schedule comparison is retained only as a sensitivity check because the feed runs into future dates relative to the analysis date of May 7, 2026.</p>
+
+      <div class="figure">
+        <img src="../../figures/final_analysis/figure_00_analysis_workflow.png" alt="Analysis workflow diagram">
+        <div class="caption">Figure 1. Analytical workflow linking ACS transit need indicators, GTFS scheduled service, tract buffers, and equity comparison outputs.</div>
+        <div class="interpretation"></strong> This figure shows how the project moves from raw public datasets to an equity claim. The workflow is important because the conclusion depends on joining social need indicators to scheduled service measures at a common tract geography, rather than treating demographic need and transit service as separate descriptive facts.</div>
+      </div>
+
+      <div class="figure">
+        <img src="../../figures/final_analysis/map_01_transit_need_quartiles.png" alt="Map of transit need quartiles">
+        <div class="caption">Figure 2. Transit need index quartiles by Census tract in Montgomery County.</div>
+        <div class="interpretation"></strong> This figure identifies the neighborhoods where the equity stakes of a bus redesign are highest. The higher-need tracts form visible clusters rather than an even countywide pattern, meaning that an equity evaluation must be spatial as well as statistical. These areas become the priority geography for asking whether service gains were aligned with need.</div>
+      </div>
+    </article>
+
+    <article>
+      <h2>Results</h2>
+      <p>The central result is that Phase 1 did not show a clear pattern of larger scheduled service gains in higher-need tracts. High-need tracts had the highest baseline level of scheduled service, but their average weekday scheduled trip count declined after Phase 1. Moderate-low-need tracts gained the most service on average.</p>
+
+      <div class="figure">
+        <img src="../../figures/final_analysis/trend_weekday_service_by_need_quartile.png" alt="Line chart of weekday service by transit need quartile">
+        <div class="caption">Figure 3. Average weekday scheduled trips by transit need quartile across the January 2025, June 2025, and May 2026 published GTFS feeds.</div>
+        <div class="interpretation"></strong> This figure shows that the high-need quartile started with more scheduled service than the other quartiles, which matters for interpretation because a service loss does not necessarily mean these tracts became the lowest-served places. However, the line for high-need tracts declines after the redesign, while the moderate-low group rises, so the change pattern does not match an equity-prioritized service gain story.</div>
+      </div>
+
+      <div class="figure">
+        <img src="../../figures/final_analysis/figure_05_phase1_baseline_and_change_by_need.png" alt="Phase 1 baseline and change by need quartile">
+        <div class="caption">Figure 4. Baseline scheduled service and Phase 1 weekday scheduled trip change by transit need quartile.</div>
+        <div class="interpretation"></strong> This figure separates the baseline condition from the policy change. High-need tracts were not underserved in the simple scheduled-trip count at baseline, but they also did not receive the largest gains after Phase 1. This distinction is central to the project: the finding is not that high-need places lacked all service, but that the redesign's incremental benefits were not concentrated there.</div>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Need Quartile</th>
+              <th class="num">Tracts</th>
+              <th class="num">Baseline Weekday Trips</th>
+              <th class="num">Mean Weekday Change</th>
+              <th class="num">Mean Stop Change</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Low</td>
+              <td class="num">58</td>
+              <td class="num">1,826.3</td>
+              <td class="num loss">-3.0</td>
+              <td class="num loss">-2.4</td>
+            </tr>
+            <tr>
+              <td>Moderate low</td>
+              <td class="num">58</td>
+              <td class="num">2,174.7</td>
+              <td class="num gain">+66.0</td>
+              <td class="num loss">-1.3</td>
+            </tr>
+            <tr>
+              <td>Moderate high</td>
+              <td class="num">58</td>
+              <td class="num">2,219.3</td>
+              <td class="num gain">+18.4</td>
+              <td class="num loss">-2.2</td>
+            </tr>
+            <tr>
+              <td>High</td>
+              <td class="num">58</td>
+              <td class="num">2,948.9</td>
+              <td class="num loss">-26.7</td>
+              <td class="num loss">-3.5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="interpretation">/strong> This table provides the strongest compact evidence for the main conclusion. If Phase 1 had clearly prioritized the highest-need tracts, the high-need row would show the largest positive mean change. Instead, it shows an average loss of 26.7 weekday trips and the largest average stop loss, while moderate-low tracts show the largest average gain.</div>
+
+      <div class="figure">
+        <img src="../../figures/final_analysis/map_02_phase1_weekday_trip_change_categories.png" alt="Map of Phase 1 scheduled weekday trip change">
+        <div class="caption">Figure 5. Phase 1 scheduled weekday trip change by Census tract.</div>
+        <div class="interpretation"></strong> This figure shows why the project cannot rely only on a chart or countywide average. The scheduled service changes are spatially uneven, with gains and losses occurring in different parts of the county. The map turns the statistical result into a planning problem by showing where redesign effects would need to be examined on the ground.</div>
+      </div>
+
+      <div class="figure">
+        <img src="../../figures/final_analysis/map_03_high_need_service_loss_watchlist.png" alt="Map of high-need service-loss watchlist tracts">
+        <div class="caption">Figure 6. High-need tracts with large scheduled service losses after Phase 1.</div>
+        <div class="interpretation"></strong> This figure identifies the places where the equity concern is most concrete. These tracts combine high measured transit need with large scheduled weekday trip losses, so they should be treated as priority locations for rider outreach, schedule review, and checks against actual travel needs. This is where the analysis shifts from describing a pattern to recommending where an agency should investigate first.</div>
+      </div>
+    </article>
+
+    <article>
+      <h2>Conclusions And Implications</h2>
+      <p>The results do not support the hypothesis that Ride On Reimagined Phase 1 produced larger scheduled service gains in higher-transit-need tracts. The most important implication is not that the redesign was necessarily inequitable in every sense, but that scheduled service gains were not clearly aligned with the places where ACS indicators suggest greater transit dependence. For a planning agency, that finding should trigger a focused equity review rather than a simple pass-or-fail judgment.</p>
+      <p>This analysis also illustrates both the strength and weakness of a smart city or data science approach. Its strength is reproducibility: public ACS and GTFS data can identify patterns that might otherwise remain hidden inside technical planning documents. Its weakness is that the same data can make transit governance feel more objective than it really is. A tract-level schedule audit cannot know whether a parent can still reach child care, whether a late-shift worker can make a transfer, or whether riders feel safer after the change. Less problematically technocratic transit governance would use this analysis as a targeting tool for public engagement, not as a substitute for that engagement.</p>
+    </article>
+
+    <article>
+      <h2>Challenges And Limitations</h2>
+      <div class="two-col">
+        <div>
+          <h3>What The Method Handles Well</h3>
+          <p>The method creates a reproducible bridge between demographic indicators and scheduled transit service. It also separates the main implemented Phase 1 comparison from the 2026 published-schedule sensitivity check, which keeps future schedule data from being mistaken for observed outcomes.</p>
+        </div>
+        <div>
+          <h3>What The Method Cannot Fully Resolve</h3>
+          <p>The method does not measure real-time reliability, trip purpose, transfer burden, fare affordability, crowding, safety, or whether riders can reach meaningful destinations. It also depends on tract-level aggregation and a 0.25-mile buffer, which can simplify actual walking conditions and neighborhood boundaries.</p>
+        </div>
+      </div>
+      <p class="source-note">Data sources: U.S. Census ACS; Ride On GTFS feeds.</p>
+    </article>
+  </main>
+</body>
+</html>
