@@ -6,7 +6,7 @@ An assessment of tree canopy, land surface temperature, and environmental justic
 Author: Siddhi Pawar 
 Course: URSP688Y: Urban Data Science & Smart Cities
 Professor: Dr. Chester Harvey
-Date: Mary 14, 2026
+Date: May 14, 2026
 
 ---
 
