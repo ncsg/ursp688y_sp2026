@@ -18,19 +18,19 @@ Students should submit all assignments as pull requests to this repository. All 
 |Week|Topic|Format|Due|Discussion Leader
 |:--|:--|:--|:--|:--|
 |[Week 1: Jan 29](#january-29-week-1)|*Class Canceled for Snow*|***NO CLASS***||-|
-|[Week 2: Feb 5](#february-5-week-2)|Course Introduction & Programming Fundamentals|[Zoom](https://umd.zoom.us/j/95813351606)||Chester|
-|[Week 3: Feb 12](#february-12-week-3)|Tabular Analysis|***In-Person***|Exercise 0|Emmanuel|
-|[Week 4: Feb 19](#february-19-week-4)|Modular Programming and Generalizability|[Zoom](https://umd.zoom.us/j/95813351606)|Exercise 1|Derek|
-|[Week 5: Feb 26](#february-26-week-5)|Accessing and Wrangling Data|[Zoom](https://umd.zoom.us/j/95813351606)|Exercise 1 Code Review|Finn|
-|[Week 6: Mar 5](#march-5-week-6)|Geospatial Data|[Zoom](https://umd.zoom.us/j/95813351606)|Exercise 2|Dominic|
+|[Week 2: Feb 5](#february-5-week-2)|Course Introduction & Programming Fundamentals|[Zoom](https://umd.zoom.us/j/95813351606)|Exercise 0 (on Monday Feb 9)|Chester|
+|[Week 3: Feb 12](#february-12-week-3)|Tabular Analysis|***In-Person***|Exercise 1||Emmanuel|
+|[Week 4: Feb 19](#february-19-week-4)|Modular Programming and Generalizability|[Zoom](https://umd.zoom.us/j/95813351606)|Exercise 1 Code Review||
+|[Week 5: Feb 26](#february-26-week-5)|Accessing and Wrangling Data|[Zoom](https://umd.zoom.us/j/95813351606)|||
+|[Week 6: Mar 5](#march-5-week-6)|Geospatial Data|[Zoom](https://umd.zoom.us/j/95813351606)|Exercise 2||
 |[Week 7: Mar 12](#march-12-week-7)|Data Visualization|***In-Person***|Exercise 2 Code Review|Chester|
 |[Spring Break](#march-19-spring-break)| 🏄 🌴 🏄 🌴 🏄 🌴 🏄 🌴 |***NO CLASS***||-|
 |[Week 8: Mar 26](#march-26-week-8)|Final Project Proposal Workshop|[Zoom](https://umd.zoom.us/j/95813351606)|Final Project Proposal|-|
-|[Week 9: Apr 2](#april-2-week-9)|Network Analysis|[Zoom](https://umd.zoom.us/j/95813351606)||Xuedi| 
-|[Week 10: Apr 9](#april-9-week-10)|Spatial Visualization|***In-Person***|Exercise 3|Siddhi|
-|[Week 11: Apr 16](#april-16-week-11)|Dashboards|[Zoom](https://umd.zoom.us/j/95813351606)|Exercise 3 Code Review|Colin|
-|[Week 12: Apr 23](#april-23-week-12)|Machine Learning|[Zoom](https://umd.zoom.us/j/95813351606)||Noah|
-|[Week 13: Apr 30](#april-30-week-13)|Final Project Code Review Workshop|[Zoom](https://umd.zoom.us/j/95813351606)|Exercise 4|Joseph|
+|[Week 9: Apr 2](#april-2-week-9)|Network Analysis|[Zoom](https://umd.zoom.us/j/95813351606)||| 
+|[Week 10: Apr 9](#april-9-week-10)|Spatial Visualization|***In-Person***|Exercise 3||
+|[Week 11: Apr 16](#april-16-week-11)|Dashboards|[Zoom](https://umd.zoom.us/j/95813351606)|Exercise 3 Code Review||
+|[Week 12: Apr 23](#april-23-week-12)|Machine Learning|[Zoom](https://umd.zoom.us/j/95813351606)|||
+|[Week 13: Apr 30](#april-30-week-13)|Final Project Code Review Workshop|[Zoom](https://umd.zoom.us/j/95813351606)|Exercise 4||
 |[Week 14: May 7](#may-7-week-14)|Final Project Presentations|***In-Person***|Final Project Slides|-|
 |[Week 15: May 14](#may-14-week-15)|Final Project Due|***NO CLASS***|Final Project Report|-|
 
@@ -204,9 +204,9 @@ Conversely, I understand there are different professional norms for coding, for 
 
 A paradox of generative AI is that it may be most valuable when used by someone who is already an expert. Senior coders can use AI to quickly assemble building blocks that might have otherwise been written by more junior colleagues. But who will replace the senior coders if we no longer need junior staff? Without as much compulsory training by doing, it is more important than ever to be diligent about your own professional development, challenging yourself to build the expertise you will need to use AI effectively rather than using it to avoid learning.
 
-3. ***How easily could I detect an error in an AI output and how easily could I repair it?***
+3. ***How easily could I detect an error in an AI output and how easily could I fix it?***
 
-I avoid using AI when it would be difficult for me to detect an error or difficult for me to repair it. Of course, the difficulty of detecting and repairing is associated with expertise, so I am less likely to use AI in situations where I am less of an expert. This framework of detectability/verifiability and repairability for considering the appropriateness of AI applications was developed by Drs. Katie Shilton and Joel Chan of the [Values-Centered AI](https://vcai.umd.edu/) project in the UMD College of Information.
+I avoid using AI when it would be difficult for me to detect an error or difficult for me to fix it. Of course, the difficulty of detecting and fixing is associated with expertise, so I am less likely to use AI in situations where I am less of an expert. This framework of detectability and fixability for considering the appropriateness of AI applications was developed by Drs. Katie Shilton and Joel Chan of the [Values-Centered AI](https://vcai.umd.edu/) project in the UMD College of Information.
 
 ## Grading
 
@@ -368,7 +368,7 @@ This course is inspired by numerous other courses and colleagues, especially:
   - Spatial joins
 - Code Review Workshop
 - Reading seminar
-  - Peng, Q., Knaap, G., & Finio, N. (2023). Do Multifamily Unit Rents Increase in Response to Light Rail in the Pre-service Period? _International Regional Science Review_, 01600176231162563. <https://doi.org/10.1177/01600176231162563>
+  - Peng, Q., Knaap, G., & Finio, N. (2023). Do Multifamily unit Rents Increase in Response to Light Rail in the Pre-service Period? _International Regional Science Review_, 01600176231162563. <https://doi.org/10.1177/01600176231162563>
 
 ### March 12 (Week 7)
 

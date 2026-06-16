@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ride On Reimagined Equity Dashboard</title>
+  <style>
+    :root {
+      --ink: #17212b;
+      --muted: #5e6b75;
+      --line: #d9e0e6;
+      --panel: #ffffff;
+      --paper: #f4f6f8;
+      --teal: #167c80;
+      --rust: #a34f2f;
+      --gold: #b78a1f;
+      --blue: #2f6fa8;
+      --green: #28724f;
+      --red: #b9403a;
+      --shadow: 0 16px 32px rgba(23, 33, 43, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+    }
+
+    aside {
+      background: #192734;
+      color: #f7fbff;
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .agency {
+      color: #bfd0dd;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 8px;
+    }
+
+    h1 {
+      font-size: 1.45rem;
+      line-height: 1.15;
+      margin: 0;
+      letter-spacing: 0;
+    }
+
+    .side-copy {
+      color: #dbe6ee;
+      font-size: 0.94rem;
+      margin: 0;
+    }
+
+    .side-block {
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      padding-top: 18px;
+    }
+
+    .side-block h2 {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 10px;
+      color: #9ec8d0;
+    }
+
+    .side-block p {
+      margin: 0 0 10px;
+      color: #e5eef4;
+      font-size: 0.92rem;
+    }
+
+    .main {
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .topbar h2 {
+      margin: 0 0 6px;
+      font-size: 1.4rem;
+    }
+
+    .topbar p {
+      max-width: 860px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .status {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 10px 12px;
+      border-radius: 6px;
+      color: var(--muted);
+      min-width: 220px;
+      font-size: 0.88rem;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .kpi {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      min-height: 122px;
+    }
+
+    .kpi .label {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+    }
+
+    .kpi .value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 8px;
+    }
+
+    .kpi .note {
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin: 0;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcfd;
+    }
+
+    .panel-header h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .panel-header p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .tabs,
+    .map-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .tab {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 6px;
+      padding: 7px 10px;
+      cursor: pointer;
+      min-height: 34px;
+    }
+
+    .tab[aria-pressed="true"] {
+      border-color: var(--teal);
+      background: #e6f3f3;
+      color: #0e5c60;
+      font-weight: 700;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 420px;
+      gap: 18px;
+    }
+
+    .chart-wrap {
+      padding: 16px;
+    }
+
+    #barChart {
+      width: 100%;
+      min-height: 330px;
+      display: block;
+    }
+
+    .interpretation {
+      border-top: 1px solid var(--line);
+      padding: 14px 16px;
+      background: #fcfcfb;
+      color: #26333d;
+    }
+
+    .interpretation strong {
+      color: var(--ink);
+    }
+
+    .map-wrap {
+      padding: 14px;
+    }
+
+    .map-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      background: #eef1f4;
+    }
+
+    .data-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 18px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.88rem;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 9px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f7f9fa;
+      color: #34424d;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .loss {
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .gain {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 0.84rem;
+      margin: 0;
+      padding: 12px 16px 16px;
+    }
+
+    @media (max-width: 1180px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      aside {
+        display: block;
+      }
+
+      .dashboard-grid,
+      .data-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .main {
+        padding: 14px;
+      }
+
+      .topbar,
+      .panel-header {
+        display: block;
+      }
+
+      .status {
+        margin-top: 12px;
+      }
+
+      .tabs,
+      .map-tabs {
+        justify-content: flex-start;
+        margin-top: 12px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 0.82rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div>
+        <p class="agency">Montgomery County DOT</p>
+        <h1>Ride On Reimagined Equity Audit</h1>
+      </div>
+      <p class="side-copy">This dashboard presents a scheduled-service equity analysis of Ride On Reimagined Phase 1. It compares the January 2025 GTFS schedule with the June 2025 Phase 1 schedule and tests whether higher-transit-need tracts received larger scheduled service gains.</p>
+      <div class="side-block">
+        <h2>Central Question</h2>
+        <p>Did the redesign produce larger scheduled service gains in higher-transit-need Census tracts than in lower-transit-need tracts?</p>
+      </div>
+      <div class="side-block">
+        <h2>Transit Need Index</h2>
+        <p>The index combines ACS tract measures for households without vehicles, poverty, older adults, disability, and related indicators. GTFS stops and trips are then summarized within a 0.25-mile buffer of each tract.</p>
+      </div>
+      <div class="side-block">
+        <h2>Scope</h2>
+        <p>The analysis measures scheduled service supply. It does not measure reliability, crowding, safety, affordability, lived rider experience, or access to destinations.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="topbar">
+        <div>
+          <h2>Finding Summary</h2>
+          <p>The Phase 1 schedule did not show a clear equity-prioritized service increase. On average, high-need tracts lost scheduled weekday trips while moderate-low-need tracts gained service.</p>
+        </div>
+        <div class="status">
+          <strong> Main comparison:</strong><br>
+          January 2025 schedule to June 2025 Phase 1 schedule
+        </div>
+      </section>
+
+      <section class="kpi-grid" aria-label="Key results">
+        <article class="kpi">
+          <div class="label">High-Need Tracts</div>
+          <div class="value loss">-26.7</div>
+          <p class="note">Mean change in weekday scheduled trips within 0.25 miles.</p>
+        </article>
+        <article class="kpi">
+          <div class="label">Largest Average Gain</div>
+          <div class="value gain">+66.0</div>
+          <p class="note">Moderate-low-need tracts gained the most weekday service on average.</p>
+        </article>
+        <article class="kpi">
+          <div class="label">Equity Test</div>
+          <div class="value">p = 0.459</div>
+          <p class="note">Welch test comparing high-need tracts with all other tracts.</p>
+        </article>
+        <article class="kpi">
+          <div class="label">Interpretation</div>
+          <div class="value">No clear equity gain</div>
+          <p class="note">The evidence does not support the hypothesis that high-need tracts gained more service.</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <h3>Mean Weekday Trip Change By Need Quartile</h3>
+              <p>Bars show mean change in scheduled weekday trips accessible within 0.25 miles.</p>
+            </div>
+            <div class="tabs" aria-label="Comparison selector">
+              <button class="tab comparison-tab" type="button" data-comparison="phase1" aria-pressed="true">Phase 1</button>
+              <button class="tab comparison-tab" type="button" data-comparison="current" aria-pressed="false">2026 Sensitivity</button>
+            </div>
+          </div>
+          <div class="chart-wrap">
+            <svg id="barChart" role="img" aria-label="Bar chart of weekday trip change by transit need quartile"></svg>
+          </div>
+          <div class="interpretation" id="chartInterpretation"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <h3>Map View</h3>
+              <p id="mapSubtitle">Transit need index quartiles by Census tract.</p>
+            </div>
+            <div class="map-tabs" aria-label="Map selector">
+              <button class="tab map-tab" type="button" data-map="need" aria-pressed="true">Need</button>
+              <button class="tab map-tab" type="button" data-map="phase1" aria-pressed="false">Phase 1</button>
+              <button class="tab map-tab" type="button" data-map="watchlist" aria-pressed="false">Watchlist</button>
+              <button class="tab map-tab" type="button" data-map="current" aria-pressed="false">2026</button>
+            </div>
+          </div>
+          <div class="map-wrap">
+            <img id="mapImage" src="../../figures/final_analysis/map_01_transit_need_quartiles.png" alt="Map of transit need quartiles in Montgomery County">
+          </div>
+          <div class="interpretation" id="mapInterpretation"></div>
+        </article>
+      </section>
+
+      <section class="data-panel">
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <h3>Quartile Evidence Table</h3>
+              <p id="tableSubtitle">Primary Phase 1 comparison.</p>
+            </div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table id="quartileTable">
+              <thead>
+                <tr>
+                  <th>Need Quartile</th>
+                  <th class="num">Tracts</th>
+                  <th class="num">Baseline Weekday Trips</th>
+                  <th class="num">Weekday Change</th>
+                  <th class="num">Stop Change</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="footer-note">Baseline trips refer to the January 2025 schedule. Stop change counts scheduled stops within 0.25 miles of tract boundaries.</p>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <h3>High-Need Service-Loss Watchlist</h3>
+              <p>High-need tracts with the largest scheduled weekday losses in Phase 1.</p>
+            </div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tract</th>
+                  <th class="num">Need Percentile</th>
+                  <th class="num">Weekday Change</th>
+                  <th class="num">Stop Change</th>
+                </tr>
+              </thead>
+              <tbody id="watchlistBody"></tbody>
+            </table>
+          </div>
+          <div class="interpretation">
+            </strong> The watchlist identifies places where an equity review should become more local and qualitative. These tracts are high in estimated transit need and experienced the largest scheduled losses, which means the next planning question is whether remaining service still supports essential trips at useful times.
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const datasets = {
+      phase1: {
+        label: "Phase 1: January 2025 to June 2025",
+        tableLabel: "Primary Phase 1 comparison.",
+        values: [
+          { quartile: "Low", n: 58, baseline: 1826.3, change: -3.0, stops: -2.4 },
+          { quartile: "Moderate low", n: 58, baseline: 2174.7, change: 66.0, stops: -1.3 },
+          { quartile: "Moderate high", n: 58, baseline: 2219.3, change: 18.4, stops: -2.2 },
+          { quartile: "High", n: 58, baseline: 2948.9, change: -26.7, stops: -3.5 }
+        ],
+        interpretation: "</strong> Figure 1 shows that Phase 1 did not distribute scheduled service gains in a way that increased with measured transit need. The high-need quartile began with the highest baseline service level but lost 26.7 scheduled weekday trips on average, while the moderate-low quartile gained 66.0. This pattern does not support the hypothesis that the redesign produced larger scheduled gains in the tracts where transit need was highest."
+      },
+      current: {
+        label: "Published 2026 schedule sensitivity",
+        tableLabel: "Published 2026 schedule sensitivity check.",
+        values: [
+          { quartile: "Low", n: 58, baseline: 1826.3, change: -19.2, stops: -2.4 },
+          { quartile: "Moderate low", n: 58, baseline: 2174.7, change: 39.3, stops: -1.6 },
+          { quartile: "Moderate high", n: 58, baseline: 2219.3, change: -11.9, stops: -2.5 },
+          { quartile: "High", n: 58, baseline: 2948.9, change: -65.1, stops: -3.7 }
+        ],
+        interpretation: "</strong> The 2026 published schedule sensitivity check reinforces the caution raised by the Phase 1 result. High-need tracts show a larger average scheduled weekday loss, 65.1 trips, than any other quartile. Because the 2026 feed covers a schedule period that extends beyond the present analysis date, this result should be read as a published-schedule scenario rather than as observed rider experience."
+      }
+    };
+
+    const mapViews = {
+      need: {
+        src: "../../figures/final_analysis/map_01_transit_need_quartiles.png",
+        alt: "Map of transit need quartiles in Montgomery County",
+        subtitle: "Transit need index quartiles by Census tract.",
+        interpretation: "</strong> The transit need map shows the geography of estimated dependence on usable transit service before any schedule-change claims are made. Higher-need tracts are not randomly scattered; they form visible clusters that should be treated as priority review areas when a redesign is evaluated for equity."
+      },
+      phase1: {
+        src: "../../figures/final_analysis/map_02_phase1_weekday_trip_change_categories.png",
+        alt: "Map of Phase 1 weekday scheduled trip change in Montgomery County",
+        subtitle: "Scheduled weekday trip change from January 2025 to June 2025.",
+        interpretation: "</strong> The Phase 1 change map shows that gains and losses were spatially uneven. A redesign can improve the network overall while still reducing scheduled service in specific neighborhoods, so the map is necessary because the countywide average hides tract-level consequences."
+      },
+      watchlist: {
+        src: "../../figures/final_analysis/map_03_high_need_service_loss_watchlist.png",
+        alt: "Map of high-need service-loss watchlist tracts",
+        subtitle: "High-need tracts with large scheduled weekday service losses.",
+        interpretation: "</strong> The watchlist map translates the statistical result into planning action. It highlights where high transit need and scheduled service loss overlap, which gives the agency a focused set of neighborhoods for field review, rider engagement, and closer schedule diagnostics."
+      },
+      current: {
+        src: "../../figures/final_analysis/map_04_current_weekday_trip_change_categories.png",
+        alt: "Map of published 2026 scheduled weekday trip change in Montgomery County",
+        subtitle: "Published 2026 schedule sensitivity compared with January 2025.",
+        interpretation: "</strong> The 2026 sensitivity map is not the main evidence for implementation impact, but it is useful for checking whether the Phase 1 concern disappears in the currently published schedule. The persistence of losses in some places suggests that the equity question remains relevant for future monitoring."
+      }
+    };
+
+    const watchlist = [
+      { tract: "7015.09", percentile: 86.6, change: -1080, stops: -18 },
+      { tract: "7014.14", percentile: 80.2, change: -915, stops: -24 },
+      { tract: "7014.15", percentile: 76.3, change: -900, stops: -25 },
+      { tract: "7055.02", percentile: 82.3, change: -789, stops: -21 },
+      { tract: "7014.25", percentile: 97.8, change: -648, stops: -16 },
+      { tract: "7012.18", percentile: 95.7, change: -627, stops: -14 },
+      { tract: "7015.05", percentile: 86.2, change: -576, stops: -4 },
+      { tract: "7048.03", percentile: 76.7, change: -546, stops: -14 }
+    ];
+
+    const chart = document.getElementById("barChart");
+    const chartInterpretation = document.getElementById("chartInterpretation");
+    const tableBody = document.querySelector("#quartileTable tbody");
+    const tableSubtitle = document.getElementById("tableSubtitle");
+    const mapImage = document.getElementById("mapImage");
+    const mapSubtitle = document.getElementById("mapSubtitle");
+    const mapInterpretation = document.getElementById("mapInterpretation");
+    const watchlistBody = document.getElementById("watchlistBody");
+
+    function formatNumber(value, digits = 1) {
+      const formatted = Number(value).toLocaleString(undefined, {
+        minimumFractionDigits: digits,
+        maximumFractionDigits: digits
+      });
+      return value > 0 ? `+${formatted}` : formatted;
+    }
+
+    function drawChart(key) {
+      const data = datasets[key].values;
+      const width = 820;
+      const height = 360;
+      const margin = { top: 24, right: 24, bottom: 70, left: 70 };
+      const plotWidth = width - margin.left - margin.right;
+      const plotHeight = height - margin.top - margin.bottom;
+      const maxAbs = Math.max(...data.map(d => Math.abs(d.change)), 80);
+      const yMax = Math.ceil(maxAbs / 20) * 20;
+      const yMin = -yMax;
+      const yScale = value => margin.top + ((yMax - value) / (yMax - yMin)) * plotHeight;
+      const xStep = plotWidth / data.length;
+      const barWidth = Math.min(92, xStep * 0.56);
+      const zeroY = yScale(0);
+      let parts = [];
+
+      parts.push(`<svg viewBox="0 0 ${width} ${height}" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">`);
+      parts.push(`<rect x="0" y="0" width="${width}" height="${height}" fill="#ffffff"></rect>`);
+
+      for (let tick = yMin; tick <= yMax; tick += 40) {
+        const y = yScale(tick);
+        parts.push(`<line x1="${margin.left}" y1="${y}" x2="${width - margin.right}" y2="${y}" stroke="#e4e9ed" stroke-width="1"></line>`);
+        parts.push(`<text x="${margin.left - 10}" y="${y + 4}" text-anchor="end" font-size="12" fill="#5e6b75">${tick}</text>`);
+      }
+
+      parts.push(`<line x1="${margin.left}" y1="${zeroY}" x2="${width - margin.right}" y2="${zeroY}" stroke="#17212b" stroke-width="1.4"></line>`);
+      parts.push(`<text x="18" y="${height / 2}" transform="rotate(-90 18 ${height / 2})" text-anchor="middle" font-size="12" fill="#5e6b75">Mean weekday scheduled trip change</text>`);
+
+      data.forEach((d, i) => {
+        const xCenter = margin.left + i * xStep + xStep / 2;
+        const y = d.change >= 0 ? yScale(d.change) : zeroY;
+        const h = Math.abs(yScale(d.change) - zeroY);
+        const color = d.change >= 0 ? "#28724f" : "#b9403a";
+        parts.push(`<rect x="${xCenter - barWidth / 2}" y="${y}" width="${barWidth}" height="${Math.max(h, 1)}" fill="${color}" rx="3"></rect>`);
+        parts.push(`<text x="${xCenter}" y="${d.change >= 0 ? y - 8 : y + h + 18}" text-anchor="middle" font-size="13" font-weight="700" fill="${color}">${formatNumber(d.change)}</text>`);
+        parts.push(`<text x="${xCenter}" y="${height - 42}" text-anchor="middle" font-size="13" fill="#26333d">${d.quartile}</text>`);
+        parts.push(`<text x="${xCenter}" y="${height - 24}" text-anchor="middle" font-size="11" fill="#5e6b75">n=${d.n}</text>`);
+      });
+
+      parts.push(`<text x="${margin.left}" y="18" font-size="13" fill="#5e6b75">${datasets[key].label}</text>`);
+      parts.push(`</svg>`);
+      chart.innerHTML = parts.join("");
+    }
+
+    function renderTable(key) {
+      tableSubtitle.textContent = datasets[key].tableLabel;
+      tableBody.innerHTML = datasets[key].values.map(row => {
+        const changeClass = row.change >= 0 ? "gain" : "loss";
+        return `
+          <tr>
+            <td>${row.quartile}</td>
+            <td class="num">${row.n}</td>
+            <td class="num">${row.baseline.toLocaleString(undefined, { maximumFractionDigits: 1 })}</td>
+            <td class="num ${changeClass}">${formatNumber(row.change)}</td>
+            <td class="num">${formatNumber(row.stops)}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function setComparison(key) {
+      document.querySelectorAll(".comparison-tab").forEach(button => {
+        button.setAttribute("aria-pressed", String(button.dataset.comparison === key));
+      });
+      drawChart(key);
+      renderTable(key);
+      chartInterpretation.innerHTML = datasets[key].interpretation;
+    }
+
+    function setMap(key) {
+      const view = mapViews[key];
+      document.querySelectorAll(".map-tab").forEach(button => {
+        button.setAttribute("aria-pressed", String(button.dataset.map === key));
+      });
+      mapImage.src = view.src;
+      mapImage.alt = view.alt;
+      mapSubtitle.textContent = view.subtitle;
+      mapInterpretation.innerHTML = view.interpretation;
+    }
+
+    function renderWatchlist() {
+      watchlistBody.innerHTML = watchlist.map(row => `
+        <tr>
+          <td>${row.tract}</td>
+          <td class="num">${row.percentile.toFixed(1)}%</td>
+          <td class="num loss">${row.change.toLocaleString()}</td>
+          <td class="num loss">${row.stops}</td>
+        </tr>
+      `).join("");
+    }
+
+    document.querySelectorAll(".comparison-tab").forEach(button => {
+      button.addEventListener("click", () => setComparison(button.dataset.comparison));
+    });
+
+    document.querySelectorAll(".map-tab").forEach(button => {
+      button.addEventListener("click", () => setMap(button.dataset.map));
+    });
+
+    renderWatchlist();
+    setComparison("phase1");
+    setMap("need");
+  </script>
+</body>
+</html>
